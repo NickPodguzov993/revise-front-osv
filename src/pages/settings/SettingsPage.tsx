@@ -1,6 +1,7 @@
 import useSWR, { useSWRConfig } from "swr";
 import { useEffect, useState } from "react";
-import { useNavigate } from 'react-router-dom';
+//import { useNavigate } from 'react-router-dom';
+import { LInk } from 'react-router-dom';
 import { Button, Group, Stack, Title } from "@mantine/core";
 import { MonthPickerInput } from "@mantine/dates";
 import { notifications } from "@mantine/notifications";
@@ -324,18 +325,18 @@ export function SettingsPage() {
     mutate(reviseObjectsUrl(date));
   }
 
-  const navigate = useNavigate();
+ // const navigate = useNavigate();
 
   return (
     <Group h="100%" grow>
       <Stack h="100%" pt="xs">
         <Group justify="space-between" pr="md" grow>
           <Button
-          onClick={()=>{ navigate('/home')}}
+         // onClick={()=>{ navigate('/home')}}
             w="min-content"
             size="sm"
             variant="subtle"
-
+            component={Link}
             to={`/?date=${getMonthDate(date)}`}
             styles={{ root: { flex: 0 }, label: { gap: "0.5rem" } }}
           >
