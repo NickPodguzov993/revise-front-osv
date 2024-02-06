@@ -1,7 +1,7 @@
 import useSWR, { useSWRConfig } from "swr";
 import { useEffect, useState } from "react";
 //import { useNavigate } from 'react-router-dom';
-import { LInk } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Button, Group, Stack, Title } from "@mantine/core";
 import { MonthPickerInput } from "@mantine/dates";
 import { notifications } from "@mantine/notifications";
