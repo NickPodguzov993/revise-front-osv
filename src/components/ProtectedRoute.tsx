@@ -1,7 +1,12 @@
 import { Navigate } from "react-router-dom";
 import { useAuth } from "../shared/hooks/useAuth";
+import {ReactNode} from "react";
 
-export const ProtectedRoute = ({ children }) => {
+interface IProps {
+    children : ReactNode
+}
+
+export const ProtectedRoute = ({ children }:IProps) => {
     const { user } = useAuth();
 
     if (!user) {
