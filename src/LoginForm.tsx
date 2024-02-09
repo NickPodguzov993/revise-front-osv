@@ -1,15 +1,21 @@
-import React from "react";
+//import React from "react";
 import "./LoginForm.css";
 import { useNavigate } from 'react-router-dom';
 import { login } from "./entities/revise-object/api";
+import {useAuth} from "@/shared/hooks/useAuth";
+import {useState} from "react";
 
 
-const LoginForm: React.FC = () => {
+const LoginForm = () => {
     const navigate = useNavigate();
 
-    const [username, setUsername] = React.useState('');
-    const [password, setPassword] = React.useState('');
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+
+
+
+    const  {loginAuth}  = useAuth();
+/*     const handleSubmit =  (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         console.log('username:', username);
         console.log('password:', password);
@@ -19,6 +25,30 @@ const LoginForm: React.FC = () => {
         // Authorization
         login(username, password);
         navigate('/home')
+
+       /!* login(username, password);
+        navigate('/home')*!/
+    };*/
+    const handleSubmit = async () => {
+        console.log('username:', username);
+        console.log('password:', password);
+
+        try {
+            const response = await login(username, password);
+
+            if (response.ok) {
+                // Replace with actual authentication logic
+                if(loginAuth)   loginAuth(username)
+
+                navigate('/home');
+            } else {
+                alert("Invalid username or password");
+            }
+        } catch (error) {
+            console.error("Login error:", error);
+            alert("An error occurred during login");
+        }
+
     };
 
     return (
