@@ -6,14 +6,16 @@ import { MantineProvider } from "@mantine/core";
 import { DatesProvider } from "@mantine/dates";
 import { fetcher } from "@/shared/api";
 import { router } from "@/pages";
+import {AuthProvider} from "@/shared/hooks/useAuth";
 
 
 export default function App() {
 
 
   return (
+      <AuthProvider>
       <div>
-          {
+              {
                   <SWRConfig value={{ fetcher }}>
                       <MantineProvider defaultColorScheme="auto">
                         <Notifications />
@@ -22,7 +24,9 @@ export default function App() {
                         </DatesProvider>
                       </MantineProvider>
                   </SWRConfig>
+
           }
       </div>
+      </AuthProvider>
   );
 }
