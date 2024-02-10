@@ -53,7 +53,7 @@ const LoginForm = () => {
 
     return (
         <div className="login-form">
-            <h2>Log in 3</h2>
+            <h2>Log in 6</h2>
             <form onSubmit={handleSubmit}>
                 <input type="text" placeholder="Имя пользователя" required value={username} onChange={(e) => setUsername(e.target.value)} />
                 <input type="password" placeholder="Пароль" required value={password} onChange={(e) => setPassword(e.target.value)} />
