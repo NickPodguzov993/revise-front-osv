@@ -35,6 +35,7 @@ const LoginForm = () => {
 
         try {
             const response = await login(username, password);
+            console.log(response)
 
             if (response.ok) {
                 // Replace with actual authentication logic
