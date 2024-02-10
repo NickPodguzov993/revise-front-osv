@@ -6,6 +6,7 @@ import { DatesProvider } from "@mantine/dates";
 import { fetcher } from "@/shared/api";
 import { router } from "@/pages";
 import {AuthProvider} from "@/shared/hooks/useAuth";
+import {RouterProvider} from "react-router-dom";
 
 
 export default function App() {
