@@ -1,6 +1,5 @@
 import "dayjs/locale/ru";
 import { SWRConfig } from "swr";
-import {BrowserRouter, RouterProvider} from "react-router-dom";
 import { Notifications } from "@mantine/notifications";
 import { MantineProvider } from "@mantine/core";
 import { DatesProvider } from "@mantine/dates";

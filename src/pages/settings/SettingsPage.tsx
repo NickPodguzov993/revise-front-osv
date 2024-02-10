@@ -338,12 +338,12 @@ export function SettingsPage() {
             <Stack h="100%" pt="xs">
                 <Group justify="space-between" pr="md" grow>
                     <Button
-                        onClick={() => {
+                        /*onClick={() => {
                             navigate('/home')
-                        }}
+                        }}*/
                         w="min-content"
                         size="sm"
-                        // component={Link}
+                         component={Link}
                         variant="subtle"
                         to={`/?date=${getMonthDate(date)}`}
                         styles={{root: {flex: 0}, label: {gap: "0.5rem"}}}
