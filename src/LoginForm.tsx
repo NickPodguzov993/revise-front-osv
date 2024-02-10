@@ -39,7 +39,6 @@ const LoginForm = () => {
             if (response.ok) {
                 // Replace with actual authentication logic
                 if(loginAuth)   loginAuth(username)
-
                 navigate('/home');
             } else {
                 alert("Invalid username or password");

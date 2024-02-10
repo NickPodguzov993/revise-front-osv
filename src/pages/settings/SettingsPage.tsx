@@ -341,7 +341,7 @@ export function SettingsPage() {
             styles={{ root: { flex: 0 }, label: { gap: "0.5rem" } }}
           >
             <TbArrowLeft />
-            Назад
+            Наазад
           </Button>
           <Title order={2} fz="xl" style={{ minWidth: "max-content" }}>
             Настройки объектов сверки
