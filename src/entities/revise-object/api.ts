@@ -27,7 +27,7 @@ export async function deleteReviseFile(fileId: ReviseFile["id"]) {
 
 export async function login(username: string, password: string) {
   return fetch(`/api/user/login?username=${username}&password=${password}`, {
-    method: "POST", // *GET, POST, PUT, DELETE, etc.
+    method: "GET", // *GET, POST, PUT, DELETE, etc.
   //  mode: "cors", // no-cors, *cors, same-origin
  //   cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
   //  credentials: "same-origin", // include, *same-origin, omit
