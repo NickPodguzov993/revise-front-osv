@@ -1,5 +1,5 @@
 import {createContext, ReactNode, useContext, useMemo} from "react";
-//import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { useLocalStorage } from "../hooks/useLocalStorage.tsx";
 const AuthContext = createContext<CProps>({});
 
@@ -19,8 +19,8 @@ interface CProps {
 }
 
 export const AuthProvider = ({ children }: IProps) => {
-    const [user, setUser] = useLocalStorage("user");
-   // const navigate = useNavigate();
+    const [user, setUser] = useLocalStorage("user", '');
+    // const navigate = useNavigate();
 
    /* const data = {
         user: 'user', password:'password'
@@ -30,20 +30,20 @@ export const AuthProvider = ({ children }: IProps) => {
     const loginAuth =  (data:string) => {
         console.log(123)
         setUser(data);
-     //   navigate("/home");
+        // navigate("/home");
     };
 
 
-    /*const logout = () => {
-        setUser(null);
-     //   navigate("/", { replace: true });
-    };*/
+    const logout = () => {
+        localStorage.clear()
+        // navigate("/", { replace: true });
+    };
 
     const value = useMemo(
         () => ({
             user,
             loginAuth,
-           // logout,
+            logout,
         }),
         [user]
     );

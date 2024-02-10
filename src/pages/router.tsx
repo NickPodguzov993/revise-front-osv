@@ -4,6 +4,8 @@ import { createBrowserRouter } from "react-router-dom";
 import { Loader } from "@mantine/core";
 import { Layout } from "@/shared/ui";
 import LoginForm from "@/LoginForm";
+import {AuthProvider} from "@/shared/hooks/useAuth";
+import {ProtectedRoute} from "@/components/ProtectedRoute";
 
 const HomePage = lazy(() => import("./home"));
 const SettingsPage = lazy(() => import("./settings"));
@@ -19,7 +21,9 @@ export const router = createBrowserRouter([
         path: "/",
         element: (
             <Suspense fallback={<PageLoader />}>
+
                 <LoginForm />
+
             </Suspense>
         ),
     },
@@ -30,7 +34,11 @@ export const router = createBrowserRouter([
         path: "/home",
         element: (
             <Suspense fallback={<PageLoader />}>
+
+                    <ProtectedRoute>
               <HomePage />
+                    </ProtectedRoute>
+
             </Suspense>
         ),
       },
@@ -39,7 +47,11 @@ export const router = createBrowserRouter([
         path: "*",
         element: (
             <Suspense fallback={<PageLoader />}>
-              <HomePage />
+
+                    <ProtectedRoute>
+                        <HomePage />
+                    </ProtectedRoute>
+
             </Suspense>
         ),
       },
@@ -47,7 +59,11 @@ export const router = createBrowserRouter([
         path: "/settings",
         element: (
           <Suspense fallback={<PageLoader />}>
-            <SettingsPage />
+
+                  <ProtectedRoute>
+                      <SettingsPage />
+                  </ProtectedRoute>
+
           </Suspense>
         ),
       },
@@ -55,7 +71,11 @@ export const router = createBrowserRouter([
         path: "/summary/:date",
         element: (
           <Suspense fallback={<PageLoader />}>
-            <SummaryPage />
+
+                  <ProtectedRoute>
+                      <SummaryPage />
+                  </ProtectedRoute>
+
           </Suspense>
         ),
       },
@@ -63,7 +83,11 @@ export const router = createBrowserRouter([
         path: "/logs",
         element: (
             <Suspense fallback={<PageLoader />}>
-              <LogsPage />
+
+                    <ProtectedRoute>
+                        <LogsPage />
+                    </ProtectedRoute>
+
             </Suspense>
         ),
       },

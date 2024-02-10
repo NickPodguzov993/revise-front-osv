@@ -3,35 +3,25 @@ import "./LoginForm.css";
 import { useNavigate } from 'react-router-dom';
 import { login } from "./entities/revise-object/api";
 import {useAuth} from "@/shared/hooks/useAuth";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+
 
 
 const LoginForm = () => {
-    const navigate = useNavigate();
-
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
+    const  {loginAuth, user}  = useAuth();
 
+    useEffect(() => {
+        if(user) navigate('/home')
 
+    }, [user])
 
-    const  {loginAuth}  = useAuth();
-/*     const handleSubmit =  (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        console.log('username:', username);
-        console.log('password:', password);
-        // console.log(document.cookie);
-        // localStorage.getItem(document.cookie)
-        // localStorage.setItem()
-        // Authorization
-        login(username, password);
-        navigate('/home')
-
-       /!* login(username, password);
-        navigate('/home')*!/
-    };*/
     const handleSubmit = async () => {
         console.log('username:', username);
         console.log('password:', password);
+        if(loginAuth)   loginAuth(username)
 
         try {
             const response = await login(username, password);
@@ -40,7 +30,6 @@ const LoginForm = () => {
             if (response.ok) {
                 // Replace with actual authentication logic
                 if(loginAuth)   loginAuth(username)
-                navigate('/home');
             } else {
                 alert("Invalid username or password");
             }

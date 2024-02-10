@@ -11,7 +11,6 @@ export const ProtectedRoute = ({ children }:IProps) => {
 
     if (!user) {
         console.log('protected')
-        // user is not authenticated
         return <Navigate to="/" />;
     }
     return children;
