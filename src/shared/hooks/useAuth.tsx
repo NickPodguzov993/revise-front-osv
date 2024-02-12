@@ -20,7 +20,6 @@ interface CProps {
 
 export const AuthProvider = ({ children }: IProps) => {
     const [user, setUser] = useLocalStorage("user", '');
-    // const navigate = useNavigate();
 
    /* const data = {
         user: 'user', password:'password'
@@ -36,7 +35,7 @@ export const AuthProvider = ({ children }: IProps) => {
 
     const logout = () => {
         localStorage.clear()
-        // navigate("/", { replace: true });
+        window.open("/", { replace: true });
     };
 
     const value = useMemo(

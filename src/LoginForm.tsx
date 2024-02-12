@@ -24,7 +24,7 @@ const LoginForm = () => {
         if(loginAuth)   loginAuth(username)
 
         try {
-            const response = await login(username, password);
+            const response = //await login(username, password);
             console.log(response)
 
             if (response.ok) {
