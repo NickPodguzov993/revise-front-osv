@@ -12,23 +12,19 @@ interface userData {
     username: string;
 }
 
-interface loginData {
-    user: userData
-}
-
 interface CProps {
         user?: userData;
-        loginAuth?: (data: loginData) => Promise<void>;
+        loginAuth?: (data: unknown) => Promise<void>;
         logout?: () => void;
 }
 
 export const AuthProvider = ({ children }: IProps) => {
-    const [user, setUser] = useLocalStorage("user", null);
+    const [user, setUser] = useLocalStorage("user", '');
     const navigate = useNavigate()
 
     // call this function when you want to authenticate the user
-    const loginAuth = async (data: loginData) => {
-        setUser(data.user);
+    const loginAuth = async (data: unknown) => {
+        setUser(data);
         navigate("/home");
     };
 
