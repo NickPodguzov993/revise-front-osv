@@ -14,10 +14,6 @@ const links = [
     title: "Сверка логов",
     link: "/logs",
   },
-  {
-    title: "Выход",
-    link: "/",
-  },
 ];
 
 export function Layout() {
@@ -53,7 +49,15 @@ const {logout} = useAuth()
                   {title}
                 </Button>
               ))}
-              <button onClick={logout}>выход</button>
+              <button style={{display:'inline-block',
+                marginLeft:'20px',
+                border: 'none',
+                borderRadius: '3px',
+                backgroundColor:'inherit',
+                color: '#228be6',
+                fontWeight: 'bold',
+                cursor: 'pointer'}}
+                      onClick={logout}>выход</button>
             </nav>
           </div>
           <ColorSchemeToggle />

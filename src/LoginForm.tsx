@@ -10,30 +10,11 @@ const LoginForm: React.FC = () => {
 
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
-    const {user, loginAuth} = useAuth()
+    const {loginAuth} = useAuth()
 
     useEffect(() => {
-        if(user?.username) navigate('/')
+        if(localStorage.getItem('access_token')) navigate('/home')
     }, [])
-   /* const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        console.log('username:', username);
-        console.log('password:', password);
-        if (username === "user" && password === "password") {
-            if(loginAuth)
-           loginAuth({user: { username }});
-          //  login(username, password);
-            navigate('/home')
-        } else {
-            alert("Invalid username or password");
-        }
-        // console.log(document.cookie);
-        // localStorage.getItem(document.cookie)
-        // localStorage.setItem()
-        // Authorization
-       /!* login(username, password);
-        navigate('/home')*!/
-    };*/
 
     const handleSubmit = async () => {
         console.log('username:', username);

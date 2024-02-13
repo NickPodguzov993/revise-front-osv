@@ -7,8 +7,7 @@ interface IProps {
 }
 
 export const ProtectedRoute = ({ children }: IProps) => {
-  const { user } = useAuth();
-  if (!user) {
+  if (!localStorage.getItem('access_token')) {
     return <Navigate to="/" />;
   }
 

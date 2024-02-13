@@ -8,35 +8,27 @@ interface IProps {
  children: ReactNode
 }
 
-interface userData {
-    username: string;
-}
-
 interface CProps {
-        user?: userData;
-        loginAuth?: (data: unknown) => Promise<void>;
+        loginAuth?: (data: string) => void;
         logout?: () => void;
 }
 
 export const AuthProvider = ({ children }: IProps) => {
-    const [user, setUser] = useLocalStorage("user", '');
     const navigate = useNavigate()
 
     // call this function when you want to authenticate the user
-    const loginAuth = async (data: unknown) => {
-        setUser(data);
+    const loginAuth = (data) => {
+        localStorage.setItem('access_token', data);
         navigate("/home");
     };
 
 
     const logout = () => {
-        setUser(null);
         localStorage.clear()
         navigate("/", { replace: true });
     };
 
     const value = {
-            user,
             loginAuth,
             logout,
         }
