@@ -1,6 +1,5 @@
 import { Link, Outlet, useLocation } from "react-router-dom";
 import { AppShell, Button, Container, Title } from "@mantine/core";
-import { useNavigate } from 'react-router-dom';
 
 import styles from "./layout.module.css";
 import { ColorSchemeToggle } from "./ColorSchemeToggle";
@@ -15,13 +14,16 @@ const links = [
     title: "Сверка логов",
     link: "/logs",
   },
+  {
+    title: "Выход",
+    link: "/",
+  },
 ];
 
 export function Layout() {
   const { pathname } = useLocation();
-  const {logout} = useAuth()
   // const [opened, { toggle }] = useDisclosure();
-
+const {logout} = useAuth()
   return (
     <AppShell
       header={{ height: 60 }}
@@ -51,13 +53,7 @@ export function Layout() {
                   {title}
                 </Button>
               ))}
-              <Button
-                variant="transparent"
-                color={pathname === '/' ? "blue" : "blue"}
-                onClick={logout}
-                >
-                Выход
-              </Button>
+              <button onClick={logout}>выход</button>
             </nav>
           </div>
           <ColorSchemeToggle />

@@ -1,17 +1,16 @@
 import { Navigate } from "react-router-dom";
 import { useAuth } from "../shared/hooks/useAuth";
-import {ReactNode} from "react";
+import { ReactNode } from "react";
 
 interface IProps {
-    children : ReactNode
+  children: ReactNode;
 }
 
-export const ProtectedRoute = ({ children }:IProps) => {
-    const { user } = useAuth();
+export const ProtectedRoute = ({ children }: IProps) => {
+  const { user } = useAuth();
+  if (!user) {
+    return <Navigate to="/" />;
+  }
 
-    if (!user) {
-        console.log('protected')
-        return <Navigate to="/" />;
-    }
-    return children;
+  return children;
 };

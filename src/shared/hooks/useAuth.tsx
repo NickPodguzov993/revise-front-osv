@@ -1,56 +1,52 @@
-import {createContext, ReactNode, useContext, useMemo} from "react";
-// import { useNavigate } from "react-router-dom";
+import { ReactNode, createContext, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { useLocalStorage } from "../hooks/useLocalStorage.tsx";
+
 const AuthContext = createContext<CProps>({});
 
 interface IProps {
-    children: ReactNode
+ children: ReactNode
 }
 
 interface userData {
     username: string;
 }
 
+interface loginData {
+    user: userData
+}
 
 interface CProps {
-    user?: userData;
-    loginAuth?: (data: string) => void;
-    logout?: () => void;
+        user?: userData;
+        loginAuth?: (data: loginData) => Promise<void>;
+        logout?: () => void;
 }
 
 export const AuthProvider = ({ children }: IProps) => {
-    const [user, setUser] = useLocalStorage("user", '');
-
-   /* const data = {
-        user: 'user', password:'password'
-    }*/
+    const [user, setUser] = useLocalStorage("user", null);
+    const navigate = useNavigate()
 
     // call this function when you want to authenticate the user
-    const loginAuth =  (data:string) => {
-        console.log(123)
-        setUser(data);
-        // navigate("/home");
+    const loginAuth = async (data: loginData) => {
+        setUser(data.user);
+        navigate("/home");
     };
 
 
     const logout = () => {
+        setUser(null);
         localStorage.clear()
-        window.open("/", { replace: true });
+        navigate("/", { replace: true });
     };
 
-    const value = useMemo(
-        () => ({
+    const value = {
             user,
             loginAuth,
             logout,
-        }),
-        [user]
-    );
+        }
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
 export const useAuth = () => {
     return useContext(AuthContext);
 };
-
-

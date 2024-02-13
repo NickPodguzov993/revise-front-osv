@@ -1,6 +1,6 @@
 import useSWR, {useSWRConfig} from "swr";
 import {useEffect, useState} from "react";
-//import { useNavigate } from 'react-router-dom';
+
 import {Link} from 'react-router-dom';
 import {Button, Group, Stack, Title} from "@mantine/core";
 import {MonthPickerInput} from "@mantine/dates";
@@ -31,6 +31,7 @@ import {
     scoreboardDetailUrl,
     updateScoreboard,
 } from "@/entities/scoreboard";
+
 
 export function SettingsPage() {
     const [date, setDate] = usePersistedDate();
@@ -331,7 +332,7 @@ export function SettingsPage() {
         mutate(reviseObjectsUrl(date));
     }
 
-   // const navigate = useNavigate();
+    /*const navigate = useNavigate();*/
 
     return (
         <Group h="100%" grow>
@@ -343,7 +344,7 @@ export function SettingsPage() {
                         }}*/
                         w="min-content"
                         size="sm"
-                         component={Link}
+                        component={Link}
                         variant="subtle"
                         to={`/?date=${getMonthDate(date)}`}
                         styles={{root: {flex: 0}, label: {gap: "0.5rem"}}}
