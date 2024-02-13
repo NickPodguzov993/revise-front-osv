@@ -1,5 +1,4 @@
 import { Navigate } from "react-router-dom";
-import { useAuth } from "../shared/hooks/useAuth";
 import { ReactNode } from "react";
 
 interface IProps {

@@ -1,6 +1,5 @@
 import { ReactNode, createContext, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { useLocalStorage } from "../hooks/useLocalStorage.tsx";
 
 const AuthContext = createContext<CProps>({});
 
@@ -17,7 +16,7 @@ export const AuthProvider = ({ children }: IProps) => {
     const navigate = useNavigate()
 
     // call this function when you want to authenticate the user
-    const loginAuth = (data) => {
+    const loginAuth = (data:string) => {
         localStorage.setItem('access_token', data);
         navigate("/home");
     };
