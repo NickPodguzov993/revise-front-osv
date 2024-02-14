@@ -346,7 +346,7 @@ export function SettingsPage() {
                         size="sm"
                         component={Link}
                         variant="subtle"
-                        to={`/?date=${getMonthDate(date)}`}
+                        to={`/home?date=${getMonthDate(date)}`}
                         styles={{root: {flex: 0}, label: {gap: "0.5rem"}}}
                     >
                         <TbArrowLeft/>
