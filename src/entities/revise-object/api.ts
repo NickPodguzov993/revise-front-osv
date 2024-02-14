@@ -25,12 +25,23 @@ export async function deleteReviseFile(fileId: ReviseFile["id"]) {
   });
 }
 
-export async function login(username: string, password: string) {
+/*export async function login(username: string, password: string) {
   return fetch(`/api/user/token?username=${username}&password=${password}`, {
     method: "POST",
     headers: {
       accept: 'application/json',
     },
+  });
+}*/
+
+export async function login(username: string, password: string) {
+  return fetch(`/api/user/token?username=${username}&password=${password}`, {
+    method: "POST",
+    headers: {
+      accept: "application/json",
+      // 'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    //body: JSON.stringify({username, password})
   });
 }
 

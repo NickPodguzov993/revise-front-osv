@@ -3,6 +3,7 @@ import { AppShell, Button, Container, Title } from "@mantine/core";
 
 import styles from "./layout.module.css";
 import { ColorSchemeToggle } from "./ColorSchemeToggle";
+import {useAuth} from "@/shared/hooks/useAuth";
 
 const links = [
   {
@@ -13,16 +14,12 @@ const links = [
     title: "Сверка логов",
     link: "/logs",
   },
-  {
-    title: "Выход",
-    link: "/",
-  },
 ];
 
 export function Layout() {
   const { pathname } = useLocation();
   // const [opened, { toggle }] = useDisclosure();
-
+const {logout} = useAuth()
   return (
     <AppShell
       header={{ height: 60 }}
@@ -52,6 +49,15 @@ export function Layout() {
                   {title}
                 </Button>
               ))}
+              <button style={{display:'inline-block',
+                marginLeft:'20px',
+                border: 'none',
+                borderRadius: '3px',
+                backgroundColor:'inherit',
+                color: '#228be6',
+                fontWeight: 'bold',
+                cursor: 'pointer'}}
+                      onClick={logout}>выход</button>
             </nav>
           </div>
           <ColorSchemeToggle />

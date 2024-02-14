@@ -62,7 +62,7 @@ export function SummaryPage() {
           size="md"
           styles={{ label: { gap: "0.5rem" } }}
           component={Link}
-          to={`/?date=${getMonthDate(date)}`}
+          to={`/home?date=${getMonthDate(date)}`}
         >
           <TbArrowLeft />
           Назад

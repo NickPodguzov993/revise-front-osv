@@ -1,28 +1,103 @@
 import "dayjs/locale/ru";
 import { SWRConfig } from "swr";
-import { RouterProvider } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { Notifications } from "@mantine/notifications";
-import { MantineProvider } from "@mantine/core";
+import { Loader, MantineProvider } from "@mantine/core";
 import { DatesProvider } from "@mantine/dates";
 import { fetcher } from "@/shared/api";
-import { router } from "@/pages";
+import { AuthProvider } from "./shared/hooks/useAuth";
+import { Suspense, lazy } from "react";
+import LoginForm from "./LoginForm";
+import { ProtectedRoute } from "./components/ProtectedRoute";
+import {Layout} from "@/shared/ui/layout";
 
+
+function PageLoader() {
+  return <Loader style={{ alignSelf: "center" }} />;
+}
+
+const HomePage = lazy(() => import("./pages/home"));
+ const SettingsPage = lazy(() => import("./pages/settings"));
+ const SummaryPage = lazy(() => import("./pages/summary"));
+ const LogsPage = lazy(() => import("./pages/logs"));
 
 export default function App() {
-
-
   return (
-      <div>
-          {
-                  <SWRConfig value={{ fetcher }}>
-                      <MantineProvider defaultColorScheme="auto">
-                        <Notifications />
-                        <DatesProvider settings={{ locale: "ru" }}>
-                              <RouterProvider router={router} />
-                        </DatesProvider>
-                      </MantineProvider>
-                  </SWRConfig>
-          }
-      </div>
+    <div>
+      {
+        <AuthProvider>
+          <SWRConfig value={{ fetcher }}>
+            <MantineProvider defaultColorScheme="auto">
+              <Notifications />
+              <DatesProvider settings={{ locale: "ru" }}>
+                <Routes>
+                  <Route
+                    path="/"
+                    element={
+                      <Suspense fallback={<PageLoader />}>
+                        <LoginForm />
+                      </Suspense>
+                    }
+                  />
+                  <Route element={<Layout/>}>
+                    <Route
+                        path="/home"
+                        element={
+                          <Suspense fallback={<PageLoader />}>
+                            <ProtectedRoute>
+                                <HomePage />
+                            </ProtectedRoute>
+                          </Suspense>
+                        }
+                    />
+                    <Route
+                        path="*"
+                        element={
+                          <Suspense fallback={<PageLoader />}>
+                            <ProtectedRoute>
+                              <HomePage />
+                            </ProtectedRoute>
+                          </Suspense>
+                        }
+                    />
+                    <Route
+                        path="/settings"
+                        element={
+                          <Suspense fallback={<PageLoader />}>
+                            <ProtectedRoute>
+                              <SettingsPage />
+                            </ProtectedRoute>
+                          </Suspense>
+                        }
+                    />
+                    <Route
+                        path="/summary/:date"
+                        element={
+                          <Suspense fallback={<PageLoader />}>
+                            <ProtectedRoute>
+                              <SummaryPage />
+                            </ProtectedRoute>
+                          </Suspense>
+                        }
+                    />
+                    <Route
+                        path="/logs"
+                        element={
+                          <Suspense fallback={<PageLoader />}>
+                            <ProtectedRoute>
+                              <LogsPage />
+                            </ProtectedRoute>
+                          </Suspense>
+                        }
+                    />
+                  </Route>
+
+                </Routes>
+              </DatesProvider>
+            </MantineProvider>
+          </SWRConfig>
+        </AuthProvider>
+      }
+    </div>
   );
 }
