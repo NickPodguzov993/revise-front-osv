@@ -35,13 +35,13 @@ export async function deleteReviseFile(fileId: ReviseFile["id"]) {
 }*/
 
 export async function login(username: string, password: string) {
-  return fetch(`/api/user/token?username=${username}&password=${password}`, {
+  return fetch(`/api/user/token`, {
     method: "POST",
     headers: {
       accept: "application/json",
       // 'Content-Type': 'application/x-www-form-urlencoded',
     },
-    //body: JSON.stringify({username, password})
+    body: JSON.stringify({username, password})
   });
 }
 
