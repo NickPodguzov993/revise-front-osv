@@ -10,6 +10,7 @@ import { Suspense, lazy } from "react";
 import LoginForm from "./LoginForm";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import {Layout} from "@/shared/ui/layout";
+import OSV from "@/pages/OSV";
 
 
 function PageLoader() {
@@ -50,6 +51,16 @@ export default function App() {
                           </Suspense>
                         }
                     />
+                      <Route
+                          path="/OSV"
+                          element={
+                              <Suspense fallback={<PageLoader />}>
+                                  <ProtectedRoute>
+                                      <OSV />
+                                  </ProtectedRoute>
+                              </Suspense>
+                          }
+                      />
                     <Route
                         path="*"
                         element={

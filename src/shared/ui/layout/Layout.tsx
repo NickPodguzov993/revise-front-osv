@@ -14,6 +14,10 @@ const links = [
     title: "Сверка логов",
     link: "/logs",
   },
+  {
+    title: "OSV",
+    link: "/OSV",
+  },
 ];
 
 export function Layout() {
@@ -49,6 +53,8 @@ const {logout} = useAuth()
                   {title}
                 </Button>
               ))}
+
+
               <button style={{display:'inline-block',
                 marginLeft:'20px',
                 border: 'none',

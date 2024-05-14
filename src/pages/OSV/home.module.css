@@ -1,0 +1,19 @@
+.container {
+  height: 100%;
+}
+
+.datePicker {
+  min-width: rem(210px);
+
+  @media (min-width: $mantine-breakpoint-xs) {
+    min-width: rem(230px);
+  }
+
+  label {
+    margin-bottom: rem(4px);
+  }
+
+  button {
+    text-transform: capitalize;
+  }
+}

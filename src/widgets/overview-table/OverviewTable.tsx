@@ -132,6 +132,7 @@ export function OverviewTable({ data, loading }: OverviewTableProps) {
           onUpload={onUploadOpen}
           onDelete={onDelete}
         />
+
       ))
     )
   ) : (
